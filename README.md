@@ -5,3 +5,6 @@
 - Visual Studio Code
 - daisyUI
 # 4. ヤマタノ
+# 5. 工夫した所
+- Geminiに細かく指示を下した。
+- AIの出力したプログラムに追加で修正を行った。
