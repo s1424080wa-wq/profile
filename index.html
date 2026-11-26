@@ -43,15 +43,15 @@
 
   <!-- 1. ナビバー (Navbar) -->
   <header class="sticky top-0 z-50">
-    <div class="navbar bg-base-100 shadow-md px-4 sm:px-8">
-      <div class="flex-1">
-        <a class="btn btn-ghost text-xl font-bold tracking-wide">🎸 ヤマタノ's Profile</a>
+    <div class="navbar bg-base-100 shadow-md px-4 sm:px-8 flex-col sm:flex-row gap-1 sm:gap-0 py-2 sm:py-0">
+      <div class="w-full sm:w-auto sm:flex-1 justify-center sm:justify-start">
+        <a class="btn btn-ghost text-lg sm:text-xl font-bold tracking-wide whitespace-nowrap">🎸 ヤマタノ's Profile</a>
       </div>
-      <div class="flex-none">
-        <ul class="menu menu-horizontal px-1 font-semibold text-sm">
-          <li><a href="#message">ひとこと</a></li>
-          <li><a href="#likes">好きなもの</a></li>
-          <li><a href="#challenge">挑戦中</a></li>
+      <div class="w-full sm:w-auto sm:flex-none flex justify-center">
+        <ul class="menu menu-horizontal px-1 py-0 font-semibold text-xs sm:text-sm">
+          <li><a href="#message" class="px-2.5 sm:px-4">ひとこと</a></li>
+          <li><a href="#likes" class="px-2.5 sm:px-4">好きなもの</a></li>
+          <li><a href="#challenge" class="px-2.5 sm:px-4">挑戦中</a></li>
         </ul>
       </div>
     </div>
@@ -80,18 +80,21 @@
     </section>
 
     <!-- セクション1: ひとこと (Alert / Callout) -->
-    <section id="message" class="scroll-mt-20">
+    <section id="message" class="scroll-mt-24 sm:scroll-mt-20">
       <h2 class="text-2xl font-bold text-base-content mb-4 flex items-center gap-2">
         <span>💬</span> ひとこと
       </h2>
-      <div class="alert alert-info shadow-lg border border-info/30 rounded-2xl p-6 text-base sm:text-lg font-bold leading-relaxed">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <span>Vibeコーディングで、自分のページを作ってます！！</span>
+      <div class="alert alert-info shadow-lg border border-info/30 rounded-2xl p-6 text-base sm:text-lg font-bold leading-relaxed flex justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span id="message-text">Vibeコーディングで、自分のページを作ってます！！</span>
+        </div>
+        <button id="message-btn" class="btn btn-primary btn-sm sm:btn-md shrink-0">ひとことボタン</button>
       </div>
     </section>
 
     <!-- セクション2: 好きなもの (Card Grid) -->
-    <section id="likes" class="scroll-mt-20">
+    <section id="likes" class="scroll-mt-24 sm:scroll-mt-20">
       <h2 class="text-2xl font-bold text-base-content mb-6 flex items-center gap-2">
         <span>❤️</span> 好きなもの
       </h2>
@@ -134,7 +137,7 @@
     </section>
 
     <!-- セクション3: 最近挑戦していること (Card / Callout) -->
-    <section id="challenge" class="scroll-mt-20">
+    <section id="challenge" class="scroll-mt-24 sm:scroll-mt-20">
       <h2 class="text-2xl font-bold text-base-content mb-4 flex items-center gap-2">
         <span>🔥</span> 最近挑戦していること
       </h2>
@@ -161,5 +164,28 @@
     </aside>
   </footer>
 
+  <script>
+    // 切り替えたい文章をすべて配列に用意する（最初の文章も入れておく）
+    const messages = [
+      "Vibeコーディングで、自分のページを作ってます！！",
+      "い",
+      "ろ",
+      "は"
+    ];
+    // 今何番目の文章を表示しているかを記録する変数（最初は0番目の文章が表示されている）
+    let currentIndex = 0;
+    // ひとことを表示するテキスト要素を取得する
+    const messageText = document.getElementById("message-text");
+    // ひとことボタンの要素を取得する
+    const messageBtn = document.getElementById("message-btn");
+
+    // ボタンがクリックされたときの処理を登録する
+    messageBtn.addEventListener("click", () => {
+      // 次の番号に進める（最後までいったら 0 に戻る）
+      currentIndex = (currentIndex + 1) % messages.length;
+      // 画面のテキストを新しい文章に書き換える
+      messageText.textContent = messages[currentIndex];
+    });
+  </script>
 </body>
 </html>
